@@ -1,5 +1,6 @@
 pub fn bitwidth(s: &str, base: u32) -> Option<usize> {
     let s = s.trim_start_matches("0");
+    let s = s.replace("_", "");
     let s = s.to_ascii_lowercase();
 
     match base {
@@ -78,6 +79,7 @@ mod tests {
         assert_eq!(bitwidth("11", 2), Some(2));
         assert_eq!(bitwidth("10101", 2), Some(5));
         assert_eq!(bitwidth("010101", 2), Some(5));
+        assert_eq!(bitwidth("0_1_01_0_1", 2), Some(5));
     }
 
     #[test]
